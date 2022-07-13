@@ -155,6 +155,8 @@ const Nav = styled.div`
 
 const NavListWrap = styled.ul`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
   list-style-type: none;
   .active {
@@ -175,6 +177,7 @@ const NavListWrap = styled.ul`
 const NavList = styled.li`
   display: flex;
   align-items: center;
+
   a {
     align-items: center;
     background: transparent;
