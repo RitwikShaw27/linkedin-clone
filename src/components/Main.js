@@ -355,9 +355,26 @@ const SocialActions = styled.div`
     span {
       margin-left: 2px;
     }
-    @media (min-width: 768px) {
-      span {
-        margin-left: 8px;
+    @media (max-width: 768px) {
+      align-items: center;
+      display: flex;
+      justify-content: flex-start;
+      margin: 0;
+      min-height: 40px;
+      padding: 4px 8px;
+      button {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px;
+        color: #0a66c2;
+        border: none;
+        background-color: white;
+        @media (min-width: 768px) {
+          span {
+            margin-left: 8px;
+          }
+        }
+        /* border: none; */
       }
     }
   }
