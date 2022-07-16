@@ -14,7 +14,7 @@ export const setLoading = (status) => ({
 
 export const getArticles = (payload) => ({
   type: GET_ARTICLES,
-  paylaod: payload,
+  payload: payload,
 });
 
 export function signInAPI() {
@@ -55,9 +55,9 @@ export function postArticleAPI(payload) {
   return (dispatch) => {
     dispatch(setLoading(true));
 
-    if (payload.image !== "") {
+    if (payload.image != "") {
       const upload = storage
-        .ref(`images/${payload.image.name}`)
+        .ref(`images${payload.image.name}`)
         .put(payload.image);
       upload.on(
         "state_changed",
@@ -72,7 +72,7 @@ export function postArticleAPI(payload) {
         },
         (error) => console.log(error.code),
         async () => {
-          const downloadURL = await upload.snapshot.ref.getDownloadURL();
+          const downLoadURL = await upload.snapshot.ref.getDownloadURL();
           db.collection("articles").add({
             actor: {
               description: payload.user.email,
@@ -81,7 +81,7 @@ export function postArticleAPI(payload) {
               image: payload.user.photoURL,
             },
             video: payload.video,
-            sharedImg: downloadURL,
+            sharedImg: downLoadURL,
             comments: 0,
             description: payload.description,
           });
@@ -106,14 +106,13 @@ export function postArticleAPI(payload) {
   };
 }
 
-export function getArticlesAPI() {
+export function getArticleAPI() {
   return (dispatch) => {
     let payload;
     db.collection("articles")
       .orderBy("actor.date", "desc")
       .onSnapshot((snapshot) => {
         payload = snapshot.docs.map((doc) => doc.data());
-        console.log(payload);
         dispatch(getArticles(payload));
       });
   };

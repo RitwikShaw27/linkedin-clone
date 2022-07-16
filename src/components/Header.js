@@ -190,6 +190,7 @@ const NavList = styled.li`
   align-items: center;
 
   a {
+    cursor: pointer;
     align-items: center;
     background: transparent;
     display: flex;
